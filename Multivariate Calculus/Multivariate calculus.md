@@ -165,6 +165,10 @@ Using a matrix notation:
 <img width="700" src="assets/n-m_neuron_function.png"/>
 </div>
 
+When a network has $n$ inputs, $m$ outputs, then
+* $\pmb W$ is a $(m, n)$ matrix
+* $\pmb b$ is a vector with $m$ elements
+
 #### Hidden layer in a neuronal network
 <div align="center">
 <img width="400" src="assets/4-3-2_neuron_function.png"/>
@@ -178,3 +182,11 @@ Using a matrix notation:
 #### Activation function
 
 $$\sigma(x) = tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+
+<div align="center">
+<img width="400" src="assets/sigma_function.png"/>
+</div>
+
+### Backpropagation
+
+Practical [example](backpropagation-example/Backpropagation.md) of backpropgation computed using the Jacobian of the cost function with respect to the weights and biases.
