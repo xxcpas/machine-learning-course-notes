@@ -8,5 +8,5 @@ These notes are clearly not sufficient on their own to understand the subject ma
 
 ### Mathematics for machine learning
 
-* [Linear Algebra](Linear%20Algebra/Linear%20algebra.md)
-* [Multivariate Calculus](Multivariate%20Calculus/Multivariate%20Calculus.md)
+* Linear Algebra ([PDF](Linear%20Algebra/Linear%20algebra.pdf), [Markdown](Linear%20Algebra/Linear%20algebra.md))
+* Multivariate Calculus ([PDF](Multivariate%20Calculus/Multivariate%20calculus.pdf), [Markdown](Multivariate%20Calculus/Multivariate%20calculus.md))
