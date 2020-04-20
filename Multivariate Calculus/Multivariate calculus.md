@@ -158,6 +158,8 @@ where
 <img width="250" src="assets/2-1_neuron_function.png"/>
 </div>
 
+<div class="page-break"/>
+
 #### 3-2 neuronal network
 <div align="center">
 <img width="250" src="assets/3-2_neuron_function.png"/>
@@ -199,6 +201,8 @@ $$\sigma(x) = tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 Practical [example](backpropagation-example/Backpropagation.md) of backpropagation computed using the Jacobian of the cost function with respect to the weights and biases.
 
+<div class="page-break"/>
+
 ## Taylor series
 
 > Also see https://en.wikipedia.org/wiki/Taylor_series
@@ -232,6 +236,8 @@ $$x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}$$
 is a better approximation of the root than $x_i$. 
 
 Geometrically, $(x_{i+1}, 0)$ is the intersection of the x-axis and the tangent of the graph of $f$ at $(x_i, f(x_i))$: that is, the improved guess is the unique root of the linear approximation at the initial point. The process is repeated as until a sufficiently precise value is reached.
+
+<div class="page-break"/>
 
 ### Grad
 
