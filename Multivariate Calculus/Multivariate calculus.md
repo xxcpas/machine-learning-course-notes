@@ -42,14 +42,18 @@ Given $f = f(x, y, z)$,
 * **Jacobian** $$J_f = \left[ \frac{\partial f}{ \partial x}, \frac{\partial f}{ \partial y}, \frac{\partial f}{ \partial z} \right]$$ where $J$ is a *row vector* of the partial derivatives of $f$. This vector points in the *direction of the greatest slope* from the point $(x, y, z)$, and the *bigger the norm* of this vector, the *steeper the slope* is.
 <br/>
 
-* **Hessian** $$ H_f =
+* **Hessian** $$ 
+\newcommand{\arraystretch}{1.5}
+H_f =
 \begin{bmatrix}
-\frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{ \partial x \partial y} & \frac{\partial^2 f}{ \partial x \partial z} \\\\
-\frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{ \partial y^2} & \frac{\partial^2 f}{ \partial y \partial z} \\\\
+\frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{ \partial x \partial y} & \frac{\partial^2 f}{ \partial x \partial z} \\
+\frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{ \partial y^2} & \frac{\partial^2 f}{ \partial y \partial z} \\
 \frac{\partial^2 f}{ \partial z \partial x} & \frac{\partial^2 f}{ \partial z \partial y} & \frac{\partial^2 f}{\partial z^2}
 \end{bmatrix}
 $$ or, in a more compact notation
-$$ H = \begin{bmatrix}
+$$
+\newcommand{\arraystretch}{1.5}
+H = \begin{bmatrix}
 \partial_{xx}f & \partial_{xy}f & \partial_{xz}f \\
 \partial_{yx}f & \partial_{yy}f & \partial_{yz}f \\
 \partial_{zx}f & \partial_{zy}f & \partial_{zz}f \\
@@ -70,7 +74,9 @@ then $$\frac{df}{dt} = \frac{\partial f}{\partial \pmb x} \cdot \frac{d \pmb x}{
 
 where
 
-$$\frac{\partial f}{\partial \pmb x} = \begin{bmatrix}
+$$
+\newcommand{\arraystretch}{1.5}
+\frac{\partial f}{\partial \pmb x} = \begin{bmatrix}
 \frac{\partial f}{\partial x_1} \\
 \frac{\partial f}{\partial x_2} \\
 \vdots \\
@@ -108,7 +114,9 @@ $$
 
 then
 
-$$\frac{df}{dt} = \frac{\partial f}{\partial \pmb x} \cdot \frac{\partial \pmb x}{\partial \pmb u} \cdot \frac{d \pmb u}{d t} = 
+$$
+\newcommand{\arraystretch}{1.5}
+\frac{df}{dt} = \frac{\partial f}{\partial \pmb x} \cdot \frac{\partial \pmb x}{\partial \pmb u} \cdot \frac{d \pmb u}{d t} = 
 \begin{bmatrix}
 \frac{\partial f}{\partial x_1} & \frac{\partial f}{\partial x_2}
 \end{bmatrix}
@@ -189,4 +197,79 @@ $$\sigma(x) = tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 ### Backpropagation
 
-Practical [example](backpropagation-example/Backpropagation.md) of backpropgation computed using the Jacobian of the cost function with respect to the weights and biases.
+Practical [example](backpropagation-example/Backpropagation.md) of backpropagation computed using the Jacobian of the cost function with respect to the weights and biases.
+
+## Taylor series
+
+> Also see https://en.wikipedia.org/wiki/Taylor_series
+
+**Univariate**
+
+$$f(x) = f(a)+\frac {f'(a)}{1!} (x-a)+ \frac{f''(a)}{2!} (x-a)^2+\frac{f'''(a)}{3!}(x-a)^3+ \cdots$$
+
+or, in a more compact notation:
+
+$$f(x) = \sum_{n=0} ^ {\infty} \frac {f^{(n)}(a)}{n!} (x-a)^{n} $$
+
+where $f^{(n)}(a)$ denotes the *nth* derivative of $f$ evaluated at the point $a$.
+
+When $a = 0$, the series is also called a **Maclaurin series**.
+
+**Multivariate**
+
+$$f(\pmb x) = f(\pmb c) + \pmb J_f(\pmb c)(\pmb x − \pmb c) + \frac{1}{2}(\pmb x − \pmb c)^T \pmb H_f (\pmb c)(\pmb x − \pmb c) + ...$$
+
+## Optimization and vector calculus
+
+### Newton-Raphson
+
+> Reference: https://en.wikipedia.org/wiki/Newton%27s_method
+
+In numerical analysis, the Newton–Raphson method is a **root-finding algorithm** which produces successively better approximations to the roots (or zeroes) of a real-valued function.
+
+$$x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}$$
+
+is a better approximation of the root than $x_i$. 
+
+Geometrically, $(x_{i+1}, 0)$ is the intersection of the x-axis and the tangent of the graph of $f$ at $(x_i, f(x_i))$: that is, the improved guess is the unique root of the linear approximation at the initial point. The process is repeated as until a sufficiently precise value is reached.
+
+### Grad
+
+The **gradient vector** (called *grad*) is perpendicular to the contour lines of $f(x,y,z)$ and is written
+$$\nabla f = 
+\newcommand{\arraystretch}{1.5}
+\begin{bmatrix} 
+\frac{\partial f}{\partial x} \\
+\frac{\partial f}{\partial y} \\
+\frac{\partial f}{\partial z}
+\end{bmatrix} $$
+
+#### Gradient descent
+
+We can use *grad* to go down a hill to find the minimum values of a function by taking little steps. We don't need to evaluate the function everywhere, and then, find the minimum, or solve the function using algebra. This *gradient descent* method is probably the most powerful method for finding minima that exists.
+
+If $s_n$ is our current position, the next position is
+
+$$s_{n+1} = s_n - \gamma \nabla f$$
+
+where $\gamma$ is a factor to control the descend speed.
+
+#### Lagrange multiplier
+
+If we want to find the minimums or maximums of a function $f$ under a constraint described by the function $g$, we need to solve the equation
+$$\nabla f = \lambda \nabla g$$ where $\lambda$ is the **Lagrange multiplier**. 
+
+In other words, the minimums or maximums are where the two gradients are parallel, or where the contours of $g(\pmb x)$ are parallel to the contours of $f(\pmb x)$.
+
+### Nonlinear least squares fitting method
+
+Let $\pmb y = f(\pmb x;a_k)$ be a non-linear function of $\pmb x$ with $m$ parameters $a_k$, and $\sigma_i$ is the uncertainty of the data point $y_i$, where $i = 1..n$. 
+
+Say we want to fit the parameters $a_k$ to some data, the goodness of fit parameters is measured by the sum of the squares of the residuals of the model
+
+$$ \chi^2 = \sum_{i=1}^{n} \frac{(y_i-f(x_i;a_k))^2}{\sigma_i^2} $$
+
+Uncertain data points have a low weight in the sum of $\chi$. When uncertainty is unknown,  $\sigma_i = 1$, and we can write $$\chi^2 = |\pmb y -f(\pmb x; a_k)|^2$$
+
+The minimum of $\chi^2$ is found when $\nabla \chi^2 = 0$. We find it by using the steepest descent by adapting the parameters $a_k$, where
+$$a_{next} = a_{cur} + \gamma \sum_{i=1}^{n} \frac{(y_i-y(x_i;a_k))}{\sigma_i^2} \frac{\partial y}{\partial a_k}$$
